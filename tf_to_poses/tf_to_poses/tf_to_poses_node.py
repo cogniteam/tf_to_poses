@@ -35,9 +35,7 @@ class MyTransformNode(Node):
         self.pose_publisher_laser = self.create_publisher(
             PoseStamped, '/tf_'+self.laser_frame, 10)
         self.pose_publisher_camera = self.create_publisher(
-            PoseStamped, '/tf_'+self.camera_frame, 10)
-
-      
+            PoseStamped, '/tf_'+self.camera_frame, 10)      
           
 
         # Parameters for timer rates
@@ -45,53 +43,40 @@ class MyTransformNode(Node):
         self.declare_parameter('map_to_laser_rate', self.rate)
         self.declare_parameter('map_to_camera_rate',self.rate)
 
-        # Timers
-        self.map_to_base_timer = self.create_timer(
-            self.get_parameter('map_to_base_rate').value,
-            self.map_to_base_callback
-        )
+        # Timer      
 
-        self.map_to_laser_timer = self.create_timer(
-            self.get_parameter('map_to_laser_rate').value,
-            self.map_to_laser_callback
-        )
+        self.timer = self.create_timer(
+            1.0 / (self.get_parameter('map_to_camera_rate').value),
+            self.tf_to_poses_callback
+        )   
+    
 
-        self.map_to_camera_timer = self.create_timer(
-            self.get_parameter('map_to_camera_rate').value,
-            self.map_to_camera_callback
-        )
-
-    def map_to_base_callback(self):
+    def tf_to_poses_callback(self):
         try:
-            transform = self.tf_buffer.lookup_transform(self.global_frame,
-                self.base_frame,  rclpy.time.Time())
-            pose_msg = self.create_pose_msg(transform)
-            self.pose_publisher_base.publish(pose_msg)
-        except Exception as e:
-            self.get_logger().error(str(e))
+            
+            robot_transform = self.tf_buffer.lookup_transform(self.global_frame,
+                self.base_frame, rclpy.time.Time())            
+            robot_pose_msg = self.create_pose_msg(robot_transform)            
+            self.pose_publisher_base.publish(robot_pose_msg)
 
-    def map_to_laser_callback(self):
-        try:
-            transform = self.tf_buffer.lookup_transform(self.global_frame,
-                self.laser_frame,rclpy.time.Time())
-            pose_msg = self.create_pose_msg(transform)
-            self.pose_publisher_laser.publish(pose_msg)
-        except Exception as e:
-            self.get_logger().error(str(e))
 
-    def map_to_camera_callback(self):
-        try:
-            transform = self.tf_buffer.lookup_transform(self.global_frame,
-                self.camera_frame, rclpy.time.Time())
-            pose_msg = self.create_pose_msg(transform)
+            camera_transform = self.tf_buffer.lookup_transform(self.global_frame,
+                self.camera_frame, rclpy.time.Time())            
+            camera_pose_msg = self.create_pose_msg(camera_transform)            
             self.pose_publisher_camera.publish(pose_msg)
+
+            laser_transform = self.tf_buffer.lookup_transform(self.global_frame,
+                self.laser_frame, rclpy.time.Time())            
+            laser_pose_msg = self.create_pose_msg(laser_transform)            
+            self.self.pose_publisher_laser.publish(laser_pose_msg)           
+
         except Exception as e:
             self.get_logger().error(str(e))
 
     def create_pose_msg(self, transform):
         pose_msg = PoseStamped()
         pose_msg.header.frame_id = self.global_frame
-        pose_msg.header.stamp = rclpy.time.Time().to_msg()
+        pose_msg.header.stamp = self.get_clock().now() 
         pose_msg.pose.position.x = transform.transform.translation.x
         pose_msg.pose.position.y = transform.transform.translation.y
         pose_msg.pose.position.z = transform.transform.translation.z
