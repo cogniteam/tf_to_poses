@@ -76,7 +76,7 @@ class MyTransformNode(Node):
     def create_pose_msg(self, transform):
         pose_msg = PoseStamped()
         pose_msg.header.frame_id = self.global_frame
-        pose_msg.header.stamp = self.get_clock().now() 
+        pose_msg.header.stamp = self.get_clock().now().to_msg()
         pose_msg.pose.position.x = transform.transform.translation.x
         pose_msg.pose.position.y = transform.transform.translation.y
         pose_msg.pose.position.z = transform.transform.translation.z
