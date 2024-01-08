@@ -12,7 +12,7 @@ def generate_launch_description():
         DeclareLaunchArgument('camera_frame', default_value='camera_link',description=''),
         DeclareLaunchArgument('laser_frame', default_value='laser',description=''),  
         DeclareLaunchArgument('global_frame', default_value='map',description=''),  
-        DeclareLaunchArgument('rate', default_value='5.0',description='rate of the publishing'),
+        DeclareLaunchArgument('rate', default_value='10.0',description='rate of the publishing'),
 
      
         
