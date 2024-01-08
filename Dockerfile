@@ -4,7 +4,7 @@ RUN  apt update
 
 WORKDIR /tf_to_poses_ws/src
 
-RUN git clone https://github.com/yakir-cogniteam/tf_to_poses_ros2_humble.git and cd ..
+RUN git clone https://github.com/yakir-cogniteam/tf_to_poses_ros2_humble.git
 WORKDIR /tf_to_poses_ws/
 
 
@@ -16,4 +16,6 @@ RUN chmod +x /tf_to_poses_ws/entrypoint.sh
 ENTRYPOINT ["/tf_to_poses_ws/entrypoint.sh"]
 
 
-RUN . /opt/ros/humble/setup.sh . && . /tf_to_poses_ws/install/setup.sh && colcon build --symlink-install 
+RUN . /opt/ros/humble/setup.sh && colcon build --symlink-install
+
+#ros2 launch tf_to_poses bringup_launch.py
