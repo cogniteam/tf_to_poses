@@ -11,6 +11,6 @@ docker buildx inspect --bootstrap
 
 
 
-docker buildx build --platform linux/arm64,linux/amd64 -t cognimbus/tf_to_poses:humble --push .
+docker buildx build  --no-cache --platform linux/arm64,linux/amd64 -t cognimbus/tf_to_poses:humble --push .
 
 
