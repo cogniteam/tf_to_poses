@@ -67,7 +67,7 @@ class MyTransformNode(Node):
             laser_transform = self.tf_buffer.lookup_transform(self.global_frame,
                 self.laser_frame, rclpy.time.Time())            
             laser_pose_msg = self.create_pose_msg(laser_transform)            
-            self.self.pose_publisher_laser.publish(laser_pose_msg)           
+            self.pose_publisher_laser.publish(laser_pose_msg)           
 
         except Exception as e:
             self.get_logger().error(str(e))
