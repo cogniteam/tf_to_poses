@@ -1,6 +1,6 @@
 FROM ros:noetic
 
-RUN  apt update
+RUN  apt update && apt-get install git -y
 
 WORKDIR /tf_to_poses_ws/src
 
