@@ -4,7 +4,7 @@ RUN  apt update
 
 WORKDIR /tf_to_poses_ws/src
 
-RUN git clone https://github.com/yakir-cogniteam/tf_to_poses_ros2_noetic.git
+RUN git clone https://github.com/yakir-cogniteam/tf_to_poses.git -b noetic
 WORKDIR /tf_to_poses_ws/
 
 
