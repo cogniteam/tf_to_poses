@@ -1,10 +1,10 @@
-FROM ros:humble
+FROM ros:noetic
 
 RUN  apt update
 
 WORKDIR /tf_to_poses_ws/src
 
-RUN git clone https://github.com/yakir-cogniteam/tf_to_poses_ros2_humble.git
+RUN git clone https://github.com/yakir-cogniteam/tf_to_poses_ros2_noetic.git
 WORKDIR /tf_to_poses_ws/
 
 
@@ -16,6 +16,6 @@ RUN chmod +x /tf_to_poses_ws/entrypoint.sh
 ENTRYPOINT ["/tf_to_poses_ws/entrypoint.sh"]
 
 
-RUN . /opt/ros/humble/setup.sh && colcon build --symlink-install
+RUN . /opt/ros/noetic/setup.sh && catkin_make
 
 #ros2 launch tf_to_poses bringup_launch.py

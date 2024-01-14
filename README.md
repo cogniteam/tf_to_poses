@@ -2,10 +2,10 @@
 ## Introduction
 This project is used for users who wants to receive the position of the robot, the lidar and the camera on the in geometry_msgs.PoseStamped on wanted global frame.
 The message is calculated by the lookuptransform mechanism of the TF.
-This branch is for ros2 (humble).
+This branch is for ros2 (noetic).
 
 ### docker image
-docker pull cognimbus/tf_to_poses:humble  
+docker pull cognimbus/tf_to_poses:noetic  
 
 ### parameters
 #### base_frame
@@ -21,6 +21,6 @@ the wanted global_frame (by deafult is map).
 The rate in HZ for publishing the messages
 
 ### running the launch
-#### ros2 launch tf_to_poses bringup_launch.py
+#### roslaunch tf_to_poses tf_to_poses.launch
 
 

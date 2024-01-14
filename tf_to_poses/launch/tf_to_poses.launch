@@ -1,0 +1,23 @@
+<launch>
+  
+  <arg name="base_frame" default="base_link" />  
+  <arg name="laser_frame" default="laser" />  
+  <arg name="camera_frame" default="camera_link" />  
+  <arg name="global_frame" default="map" />  
+
+  <arg name="rate" default="10" />  
+
+
+  <node name="tf_to_poses_node" pkg="tf_to_poses" type="tf_to_poses_node.py" output="screen">
+
+    <param name="base_frame" value="$(arg base_frame)" /> 
+    <param name="laser_frame" value="$(arg laser_frame)" /> 
+    <param name="camera_frame" value="$(arg camera_frame)" /> 
+    <param name="global_frame" value="$(arg global_frame)" /> 
+
+    <param name="rate" value="$(arg rate)" /> 
+
+
+
+  </node>
+</launch>
