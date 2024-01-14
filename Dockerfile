@@ -18,4 +18,4 @@ ENTRYPOINT ["/tf_to_poses_ws/entrypoint.sh"]
 
 RUN . /opt/ros/noetic/setup.sh && catkin_make
 
-#ros2 launch tf_to_poses bringup_launch.py
+#roslaunch tf_to_poses tf_to_poses.launch

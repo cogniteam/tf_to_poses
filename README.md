@@ -2,7 +2,7 @@
 ## Introduction
 This project is used for users who wants to receive the position of the robot, the lidar and the camera on the in geometry_msgs.PoseStamped on wanted global frame.
 The message is calculated by the lookuptransform mechanism of the TF.
-This branch is for ros2 (noetic).
+This branch is for ros1 (noetic).
 
 ### docker image
 docker pull cognimbus/tf_to_poses:noetic  
