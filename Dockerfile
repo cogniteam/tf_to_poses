@@ -7,7 +7,7 @@ WORKDIR /tf_to_poses_ws/src
 RUN git clone https://github.com/cogniteam/tf_to_poses.git
 WORKDIR /tf_to_poses_ws/
 
-
+sdad
 # Set up an entry point script
 COPY entrypoint.sh /tf_to_poses_ws/entrypoint.sh
 RUN chmod +x /tf_to_poses_ws/entrypoint.sh
