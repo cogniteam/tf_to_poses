@@ -4,7 +4,7 @@ RUN  apt update && apt-get install git -y
 
 WORKDIR /tf_to_poses_ws/src
 
-RUN git clone https://github.com/yakir-cogniteam/tf_to_poses.git -b noetic
+RUN git clone https://github.com/cogniteam/tf_to_poses.git -b noetic
 WORKDIR /tf_to_poses_ws/
 
 RUN apt-get install ros-noetic-tf -y
